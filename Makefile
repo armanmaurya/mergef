@@ -1,8 +1,8 @@
 build:./main.cpp
-	g++ main.cpp -o build
+	g++ main.cpp -o margef
 
 clean:
-	rm -f build
+	rm -f mergef
 
 run:
-	./build file1.txt file2.txt file3.txt -o filefinal.txt
+	./mergef file1.txt file2.txt file3.txt -o filefinal.txt
