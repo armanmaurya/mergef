@@ -22,19 +22,27 @@ int main(int argc, char *argv[]) {
 
 	string output_file;
 	vector<string> input_files;
+
+	string usage = "Usage: \n"
+		"\tmergef <file_paths> -o <output_file>";
+
+
+	if (argc < 4 || argv[1] == "-h" || argv[1] == "--help") {
+		cout << usage << endl;
+		return 0;
+	}
 	parse_arguments(argc, argv, output_file, input_files);
-	
+
 	for (int i = 0; i < input_files.size(); i++){
 		string text_line;
 		string full_text;
 		ifstream file(input_files[i]);
-
 		while (getline(file, text_line)){
 			full_text += text_line;
 			full_text += "\n";
-		}
+		}	
 		cout << full_text<<endl;
 	}
-
+	
 }
 

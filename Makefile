@@ -1,5 +1,5 @@
 build:./main.cpp
-	g++ main.cpp -o margef
+	g++ main.cpp -o mergef
 
 clean:
 	rm -f mergef
