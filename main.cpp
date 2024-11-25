@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// TO-DO
+// implement a merge file function and call read file funtionn in it.
 void parse_arguments(int argc, char* argv[], string &output_file, vector<string> &input_files){
 	for (int i = 1; i < argc; i++){
 		string arg = argv[i];
@@ -16,6 +18,17 @@ void parse_arguments(int argc, char* argv[], string &output_file, vector<string>
 		}
 
 	}
+}
+
+string get_file_content(string path) {
+	string text_line;
+	string full_text;
+	ifstream file(path);
+	while (getline(file, text_line)){
+		full_text += text_line;
+		full_text += "\n";
+	}
+	return full_text;
 }
 
 int main(int argc, char *argv[]) {
@@ -34,15 +47,37 @@ int main(int argc, char *argv[]) {
 	parse_arguments(argc, argv, output_file, input_files);
 
 	for (int i = 0; i < input_files.size(); i++){
-		string text_line;
-		string full_text;
-		ifstream file(input_files[i]);
-		while (getline(file, text_line)){
-			full_text += text_line;
-			full_text += "\n";
-		}	
-		cout << full_text<<endl;
+		string text = get_file_content(input_files[i]);
+		cout << text << endl;
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
