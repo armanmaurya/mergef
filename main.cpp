@@ -31,6 +31,28 @@ string get_file_content(string path) {
 	return full_text;
 }
 
+void write_to_file(string content, string file_name) {
+	// Create and open a text file
+	ofstream file(file_name);
+	
+	// Write to the file
+	file << content;
+	
+	// Close the file
+	file.close();
+}
+
+string merge_files_content(vector<string> &input_files){
+	string final_string;
+	for (int i = 0; i < input_files.size(); i++){
+		string text = get_file_content(input_files[i]);
+		final_string += text;
+		final_string += "\n";
+	}
+	return final_string;
+	
+}
+
 int main(int argc, char *argv[]) {
 
 	string output_file;
@@ -44,12 +66,15 @@ int main(int argc, char *argv[]) {
 		cout << usage << endl;
 		return 0;
 	}
+
+	// Parse the arguments and store input files path in input_files and output file name in output file
 	parse_arguments(argc, argv, output_file, input_files);
 
-	for (int i = 0; i < input_files.size(); i++){
-		string text = get_file_content(input_files[i]);
-		cout << text << endl;
-	}
+	// Get the final merged text
+	string final_text = merge_files_content(input_files);
+
+	// Write to file
+	write_to_file(final_text, output_file);
 	
 }
 
